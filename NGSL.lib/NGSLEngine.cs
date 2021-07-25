@@ -14,6 +14,8 @@ namespace NGSL.lib
 
         private ILogger? _logger;
 
+        public EventHandler<NGSL.lib.Objects.NGSLAsset> OnNewAssetDiscovered;
+
         public NGSLEngine(ILogger? logger = null)
         {
             _logger = logger;
@@ -31,7 +33,9 @@ namespace NGSL.lib
 
         private void Discoverer_AgentFound(object? sender, AgentFoundEventArgs e)
         {
-            
+            var agent = new NGSL.lib.Objects.NGSLAsset();
+
+            OnNewAssetDiscovered?.Invoke(this, agent);
         }
     }
 }
