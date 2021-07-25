@@ -6,6 +6,9 @@ using Lextm.SharpSnmpLib.Messaging;
 
 using Microsoft.Extensions.Logging;
 
+using NGSL.lib.Common;
+using NGSL.lib.Enums;
+
 namespace NGSL.lib
 {
     public class NGSLEngine
@@ -23,12 +26,12 @@ namespace NGSL.lib
             discoverer = new Discoverer();
         }
 
-        public async void Start()
+        public async void Start(SNMPVersion version = SNMPVersion.V1)
         {
             discoverer.AgentFound -= Discoverer_AgentFound;
             discoverer.AgentFound += Discoverer_AgentFound;
 
-            await discoverer.DiscoverAsync(VersionCode.V1, new IPEndPoint(IPAddress.Broadcast, 161), new OctetString("public"), 6000);
+            await discoverer.DiscoverAsync(version.ToVersionCode(), new IPEndPoint(IPAddress.Broadcast, 161), new OctetString("public"), 6000);
         }
 
         private void Discoverer_AgentFound(object? sender, AgentFoundEventArgs e)
