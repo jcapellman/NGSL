@@ -31,7 +31,7 @@ namespace NGSL.lib
 
         private void Discoverer_AgentFound(object? sender, AgentFoundEventArgs e)
         {
-            // TODO: Log and handle
+            
         }
     }
 }
