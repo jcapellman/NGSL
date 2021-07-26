@@ -26,17 +26,21 @@ namespace NGSL.lib
             discoverer = new Discoverer();
         }
 
-        public async void Start(SNMPVersion version = SNMPVersion.V1)
+        public async void Start(SNMPVersion version = SNMPVersion.V1, int portNumber = Constants.PortNumber, int intervalMs = Constants.Interval)
         {
             discoverer.AgentFound -= Discoverer_AgentFound;
             discoverer.AgentFound += Discoverer_AgentFound;
 
-            await discoverer.DiscoverAsync(version.ToVersionCode(), new IPEndPoint(IPAddress.Broadcast, 161), new OctetString("public"), 6000);
+            await discoverer.DiscoverAsync(version.ToVersionCode(), new IPEndPoint(IPAddress.Broadcast, portNumber), new OctetString("public"), intervalMs);
         }
 
         private void Discoverer_AgentFound(object? sender, AgentFoundEventArgs e)
         {
-            var agent = new NGSL.lib.Objects.NGSLAsset();
+            var agent = new NGSL.lib.Objects.NGSLAsset
+            {
+                Address = e.Agent.Address,
+                IPAddressFamily = e.Agent.AddressFamily
+            };
 
             OnNewAssetDiscovered?.Invoke(this, agent);
         }
