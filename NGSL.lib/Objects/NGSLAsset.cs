@@ -10,5 +10,7 @@ namespace NGSL.lib.Objects
         public IPAddress Address { get;internal set;}
 
         public AddressFamily IPAddressFamily { get; internal set; }
+
+        public string Data { get; internal set; }
     }
 }

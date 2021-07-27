@@ -39,7 +39,8 @@ namespace NGSL.lib
             var agent = new NGSL.lib.Objects.NGSLAsset
             {
                 Address = e.Agent.Address,
-                IPAddressFamily = e.Agent.AddressFamily
+                IPAddressFamily = e.Agent.AddressFamily,
+                Data = e.Variable.Data.ToString()
             };
 
             OnNewAssetDiscovered?.Invoke(this, agent);
