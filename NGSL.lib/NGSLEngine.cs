@@ -13,17 +13,34 @@ namespace NGSL.lib
 {
     public class NGSLEngine
     {
-        private Discoverer discoverer;
+        private readonly Discoverer discoverer;
 
-        private ILogger? _logger;
+        private readonly ILogger? _logger;
 
         public EventHandler<NGSL.lib.Objects.NGSLAsset> OnNewAssetDiscovered;
+
+        private void LogError(string message)
+        {
+            Log(LogLevel.Error, message);
+        }
+
+        private void LogDebug(string message)
+        {
+            Log(LogLevel.Debug, message);
+        }
+
+        private void Log(LogLevel logLevel, string message)
+        {
+            _logger?.Log(logLevel, message);
+        }
 
         public NGSLEngine(ILogger? logger = null)
         {
             _logger = logger;
 
             discoverer = new Discoverer();
+
+            LogDebug("NGSLEngine Object Initialized");
         }
 
         public async void Start(SNMPVersion version = SNMPVersion.V1, int portNumber = Constants.PortNumber, int intervalMs = Constants.Interval)
