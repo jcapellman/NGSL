@@ -45,10 +45,16 @@ namespace NGSL.lib
 
         public async void Start(SNMPVersion version = SNMPVersion.V1, int portNumber = Constants.PortNumber, int intervalMs = Constants.Interval)
         {
-            discoverer.AgentFound -= Discoverer_AgentFound;
-            discoverer.AgentFound += Discoverer_AgentFound;
+            try
+            {
+                discoverer.AgentFound -= Discoverer_AgentFound;
+                discoverer.AgentFound += Discoverer_AgentFound;
 
-            await discoverer.DiscoverAsync(version.ToVersionCode(), new IPEndPoint(IPAddress.Broadcast, portNumber), new OctetString("public"), intervalMs);
+                await discoverer.DiscoverAsync(version.ToVersionCode(), new IPEndPoint(IPAddress.Broadcast, portNumber), new OctetString("public"), intervalMs);
+            } catch (Exception ex)
+            {
+                LogError($"An unexpected exception occurred when starting the Engine: {ex}");
+            }
         }
 
         private void Discoverer_AgentFound(object? sender, AgentFoundEventArgs e)
