@@ -17,7 +17,7 @@ namespace NGSL.lib
 
         private readonly ILogger? _logger;
 
-        public EventHandler<NGSL.lib.Objects.NGSLAsset> OnNewAssetDiscovered;
+        public EventHandler<NGSL.lib.Objects.NGSLAsset>? OnNewAssetDiscovered;
 
         private void LogError(string message)
         {
