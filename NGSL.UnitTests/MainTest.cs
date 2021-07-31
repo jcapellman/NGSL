@@ -1,7 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using NGSL.lib;
-using NLog;
 
 namespace NGSL.UnitTests
 {
@@ -19,8 +18,6 @@ namespace NGSL.UnitTests
         [TestMethod]
         public void NGSLEngine_NotNullLogger()
         {
-            var logger = LogManager.GetCurrentClassLogger();
-
             var engine = new NGSLEngine();
 
             Assert.IsNotNull(engine);
