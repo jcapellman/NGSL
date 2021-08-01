@@ -5,7 +5,9 @@ VisualStudioVersion = 17.0.31512.422
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NGSL.lib", "NGSL.lib\NGSL.lib.csproj", "{D213A8E4-6B73-46ED-BC0C-C3E403297369}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NGSL.UnitTests", "NGSL.UnitTests\NGSL.UnitTests.csproj", "{EB7C3158-E148-41AE-982D-44B172D37CB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NGSL.UnitTests", "NGSL.UnitTests\NGSL.UnitTests.csproj", "{EB7C3158-E148-41AE-982D-44B172D37CB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NGSL.SampleApp", "NGSL.SampleApp\NGSL.SampleApp.csproj", "{6D88F1A2-9227-468D-8C16-54AB3836AE1A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{EB7C3158-E148-41AE-982D-44B172D37CB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB7C3158-E148-41AE-982D-44B172D37CB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB7C3158-E148-41AE-982D-44B172D37CB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D88F1A2-9227-468D-8C16-54AB3836AE1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D88F1A2-9227-468D-8C16-54AB3836AE1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D88F1A2-9227-468D-8C16-54AB3836AE1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D88F1A2-9227-468D-8C16-54AB3836AE1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
