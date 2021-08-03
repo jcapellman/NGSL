@@ -43,14 +43,27 @@ namespace NGSL.lib
             LogDebug("NGSLEngine Object Initialized");
         }
 
-        public async void Start(SNMPVersion version = SNMPVersion.V1, int portNumber = Constants.PortNumber, int intervalMs = Constants.Interval)
+        public async void Start(SNMPVersion version = SNMPVersion.V1 | SNMPVersion.V2 | SNMPVersion.V3, int portNumber = Constants.PortNumber, int intervalMs = Constants.Interval)
         {
             try
             {
                 discoverer.AgentFound -= Discoverer_AgentFound;
                 discoverer.AgentFound += Discoverer_AgentFound;
+                
+                if (version.HasFlag(SNMPVersion.V1))
+                {
+                    await discoverer.DiscoverAsync(VersionCode.V1, new IPEndPoint(IPAddress.Broadcast, portNumber), new OctetString("public"), intervalMs);
+                }
 
-                await discoverer.DiscoverAsync(version.ToVersionCode(), new IPEndPoint(IPAddress.Broadcast, portNumber), new OctetString("public"), intervalMs);
+                if (version.HasFlag(SNMPVersion.V2))
+                {
+                    await discoverer.DiscoverAsync(VersionCode.V2, new IPEndPoint(IPAddress.Broadcast, portNumber), new OctetString("public"), intervalMs);
+                }
+
+                if (version.HasFlag(SNMPVersion.V3))
+                {
+                    await discoverer.DiscoverAsync(VersionCode.V3, new IPEndPoint(IPAddress.Broadcast, portNumber), new OctetString("public"), intervalMs);
+                }
             } catch (Exception ex)
             {
                 LogError($"An unexpected exception occurred when starting the Engine: {ex}");
