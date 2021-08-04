@@ -5,8 +5,8 @@ namespace NGSL.lib.Enums
     [Flags]
     public enum SNMPVersion
     {
-        V1 = 1,
-        V2 = 2,
-        V3 = 4
+        V1 = 0x00,
+        V2 = 0x01,
+        V3 = 0x02
     }
 }

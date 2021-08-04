@@ -5,15 +5,22 @@ namespace NGSL.SampleApp
 {
     public partial class MainWindow : Window
     {
+        private readonly lib.NGSLEngine engine;
+
         public MainWindow()
         {
             InitializeComponent();
 
-            var engine = new lib.NGSLEngine();
+            engine = new lib.NGSLEngine();
 
             engine.OnNewAssetDiscovered += Engine_OnNewAssetDiscovered;
 
-            engine.Start();
+            StartEngine();
+        }
+
+        public async void StartEngine()
+        {
+            await engine.Start();
         }
 
         private void Engine_OnNewAssetDiscovered(object? sender, lib.Objects.NGSLAsset e)

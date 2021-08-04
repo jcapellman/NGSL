@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Net;
-
+using System.Threading.Tasks;
 using Lextm.SharpSnmpLib;
 using Lextm.SharpSnmpLib.Messaging;
 
@@ -43,7 +43,7 @@ namespace NGSL.lib
             LogDebug("NGSLEngine Object Initialized");
         }
 
-        public async void Start(SNMPVersion version = SNMPVersion.V1 | SNMPVersion.V2 | SNMPVersion.V3, int portNumber = Constants.PortNumber, int intervalMs = Constants.Interval)
+        public async Task<bool> Start(SNMPVersion version = SNMPVersion.V1 | SNMPVersion.V2 | SNMPVersion.V3, int portNumber = Constants.PortNumber, int intervalMs = Constants.Interval)
         {
             try
             {
@@ -64,9 +64,13 @@ namespace NGSL.lib
                 {
                     await discoverer.DiscoverAsync(VersionCode.V3, new IPEndPoint(IPAddress.Broadcast, portNumber), new OctetString("public"), intervalMs);
                 }
+
+                return true;
             } catch (Exception ex)
             {
                 LogError($"An unexpected exception occurred when starting the Engine: {ex}");
+
+                return false;
             }
         }
 
